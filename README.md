@@ -1,7 +1,7 @@
 
 
 
-3# JobTASK Backend
+## JobTASK Backend
 
 This repository contains the backend code for the JobTASK project, a RESTful API built with Node.js, Express.js, and MongoDB. The API supports features like product searching, filtering, sorting, and pagination.
 
@@ -25,3 +25,8 @@ This repository contains the backend code for the JobTASK project, a RESTful API
 ### Installation
 
 1. Clone this repository: git clone https://github.com/yourusername/JobTASK-backend.git
+2. cd JobTASK-backend
+3. npm install
+4. PORT=5000, MONGO_URI=your_mongodb_connection_string, JWT_SECRET=your_jwt_secret
+5. npm start
+
