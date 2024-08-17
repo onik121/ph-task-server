@@ -37,6 +37,9 @@ async function run() {
                 filter.name = { $regex: search, $options: 'i' };
             }
 
+            if (brand) filter.brand = brand;
+            if (category) filter.category = category;
+
             try {
                 const products = await Product.find(filter).limit(parseInt(limit)).skip((page - 1) * parseInt(limit)).toArray();
                 const count = await Product.countDocuments(filter); // Count total products
