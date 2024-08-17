@@ -25,6 +25,14 @@ const client = new MongoClient(uri, {
 
 async function run() {
     try {
+
+        const Product = client.db('ph-task').collection('product');
+
+        app.get('/products', async (req, res) => {
+            const products = await Product.find().toArray()
+            res.send(products)
+        })
+
         // Connect the client to the server
         await client.connect();
         // Send a ping to confirm a successful connection
