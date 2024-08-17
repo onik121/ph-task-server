@@ -38,8 +38,9 @@ async function run() {
             }
 
             try {
-                const products = await Product.find(filter).toArray();
-                res.send({ products, });
+                const products = await Product.find(filter).limit(parseInt(limit)).skip((page - 1) * parseInt(limit)).toArray();
+                const count = await Product.countDocuments(filter); // Count total products
+                res.send({ products, totalPages: Math.ceil(count / limit), currentPage: parseInt(page) });
             } catch (error) {
                 res.status(500).json({ message: error.message });
             }
