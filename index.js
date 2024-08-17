@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require("dotenv").config();
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -63,7 +63,7 @@ async function run() {
             let sort = {};
             if (sortBy === 'priceAsc') sort.price = 1; // Sort by price Low to High
             else if (sortBy === 'priceDesc') sort.price = -1; // Sort by price High to Low
-            else if (sortByDate === 'dateDesc') sort.date = -1; // Sort by date Newest First
+            if (sortByDate === 'dateDesc') sort.date = -1; // Sort by date Newest First
 
             try {
                 const products = await Product.find(filter)
@@ -84,15 +84,9 @@ async function run() {
                 res.status(500).json({ message: error.message });
             }
         });
+    }
+    finally {
 
-        // Connect the client to the server
-        // await client.connect();
-        // Send a ping to confirm a successful connection
-        // await client.db("admin").command({ ping: 1 });
-        // console.log("Pinged your deployment. You successfully connected to MongoDB!");
-    } finally {
-        // Ensures that the client will close when you finish/error
-        // await client.close();
     }
 }
 run().catch(console.dir);
