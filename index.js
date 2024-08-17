@@ -40,6 +40,16 @@ async function run() {
             if (brand) filter.brand = brand;
             if (category) filter.category = category;
 
+            // Price range filtering
+            const MinPrice = Number(minPrice);
+            const MaxPrice = Number(maxPrice);
+            if (MinPrice || MaxPrice) {
+                filter.price = {
+                    $gte: MinPrice,
+                    $lte: MaxPrice,
+                };
+            }
+
             try {
                 const products = await Product.find(filter).limit(parseInt(limit)).skip((page - 1) * parseInt(limit)).toArray();
                 const count = await Product.countDocuments(filter); // Count total products
