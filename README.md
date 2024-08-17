@@ -30,6 +30,5 @@ This repository contains the backend code for the JobTASK project, a RESTful API
 4. Set up environment variables: Create a .env file in the root of your project and add the following configuration:
    - PORT=5000
    - MONGO_URI=your_mongodb_connection_string
-   - JWT_SECRET=your_jwt_secret
 7. npm start
 
